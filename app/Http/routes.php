@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/', 'BlogController@index');
-Route::get('/another', 'BlogController@listing');
+Route::get('/', 'PostsController@index');
+Route::get('admin', 'PostsAdminController@index');
