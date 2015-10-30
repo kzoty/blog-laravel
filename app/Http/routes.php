@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'BlogController@index');
+Route::get('/another', 'BlogController@listing');

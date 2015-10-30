@@ -6,9 +6,20 @@
 
 @section('content')
     <h1>Listagem de Posts</h1>
-    <ul>
     @foreach($posts as $post)
-        <li><a href='#'>{{$post}}</a></li>
+        <hr>
+        <h2>{{$post->title}}</h2>
+        <h4>{{$post->content}}</h4>
+        <div>
+            <b>Tags: </b>
+            @foreach($post->tags as $tag)
+                <div class="badge">{{$tag->name}}</div>
+            @endforeach
+        </div>
+        <h5>Comments</h5>
+        @foreach($post->comments as $comment)
+            <b>Name: </b> {{$comment->name}}<br />
+            <b>Comment: </b> {{$comment->comment}}<br />...<br />
+        @endforeach
     @endforeach
-    </ul>
 @stop
