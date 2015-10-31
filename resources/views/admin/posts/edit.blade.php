@@ -20,7 +20,7 @@
 
         <div class="form-group">
             {!! Form::submit('Save Post', ['class'=>'btn btn-primary']) !!}
-            {!! Form::button('Cancel', ['class'=>'btn btn-danger']) !!}
+            {!! Html::link(route('admin.post.list'),'Cancel',['class'=>'btn btn-warning'] ) !!}
         </div>
     {!! Form::close() !!}
 @stop
