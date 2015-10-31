@@ -12,4 +12,14 @@
 */
 
 Route::get('/', 'PostsController@index');
-Route::get('admin', 'PostsAdminController@index');
+
+/**
+ * Posts
+ */
+Route::get('admin', function() {
+	return redirect()->route('admin.post.list');
+});
+Route::get('admin/posts', ['as'=>'admin.post.list','uses'=>'PostsAdminController@index']);
+Route::get('admin/posts/create-post', ['as'=>'admin.post.create','uses'=>'PostsAdminController@create']);
+Route::post('admin/posts/store-post', ['as'=>'admin.post.store','uses'=>'PostsAdminController@store']);
+Route::get('admin/posts/edit/{id}', ['as'=>'admin.post.edit','uses'=>'PostsAdminController@edit']);
