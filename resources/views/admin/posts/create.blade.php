@@ -15,7 +15,7 @@
             @endforeach
         </div>
     @endif
-    {!! Form::open(['route'=>'admin.post.store','mothod'=>'post']) !!}
+    {!! Form::open(['route'=>'admin.post.store','method'=>'post']) !!}
         @include('admin.posts.postFields')
 
         <div class="form-group">
