@@ -15,7 +15,7 @@
             @endforeach
         </div>
     @endif
-    {!! Form::model($post, ['route'=>['admin.post.save', $post->id],'method'=>'post']) !!}
+    {!! Form::model($post, ['route'=>['admin.post.update', $post->id],'method'=>'post']) !!}
         @include('admin.posts.postFields');
 
         <div class="form-group">
