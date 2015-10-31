@@ -15,11 +15,11 @@
             @endforeach
         </div>
     @endif
-    {!! Form::model($post, ['route'=>['admin.post.update', $post->id],'method'=>'post']) !!}
-        @include('admin.posts.postFields');
+    {!! Form::model($post, ['route'=>['admin.post.update', $post->id],'method'=>'put']) !!}
+        @include('admin.posts.postFields')
 
         <div class="form-group">
-            {!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
+            {!! Form::submit('Save Post', ['class'=>'btn btn-primary']) !!}
             {!! Form::button('Cancel', ['class'=>'btn btn-danger']) !!}
         </div>
     {!! Form::close() !!}

@@ -16,8 +16,8 @@
         @foreach($posts as $post)
         <tr>
             <td>{{$post->id}}</td>
-            <td>{{$post->title}}</td>
-            <td>#</td>
+            <td>{!! Html::link(route('admin.post.edit', $post->id), $post->title) !!}</td>
+            <td>{!! Html::link(route('admin.post.destroy', $post->id), 'Delete') !!}</td>
         </tr>
         @endforeach
     </table>

@@ -24,3 +24,4 @@ Route::get('admin/posts/create-post', ['as'=>'admin.post.create','uses'=>'PostsA
 Route::post('admin/posts/store-post', ['as'=>'admin.post.store','uses'=>'PostsAdminController@store']);
 Route::get('admin/posts/edit/{id}', ['as'=>'admin.post.edit','uses'=>'PostsAdminController@edit']);
 Route::put('admin/posts/update/{id}', ['as'=>'admin.post.update','uses'=>'PostsAdminController@update']);
+Route::get('admin/posts/destroy/{id}', ['as'=>'admin.post.destroy','uses'=>'PostsAdminController@destroy']);

@@ -48,4 +48,26 @@ class PostsAdminController extends Controller
 		$post = $this->post->find( $id );
 		return view( 'admin.posts.edit', compact( 'post' ) );
 	}
+
+	/**
+	 * Updating Post.
+	 *
+	 * @param $id
+	 * @param PostRequest $request
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function update($id, PostRequest $request) {
+
+		$this->post->find($id)->update($request->all());
+		return redirect()->route('admin.post.list');
+	}
+
+	/**
+	 * @param $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function destroy($id) {
+		$this->post->find($id)->delete();
+		return redirect()->route('admin.post.list');
+	}
 }
