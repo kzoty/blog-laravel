@@ -20,7 +20,12 @@ Route::get('admin', function() {
 	return redirect()->route('admin.post.list');
 });
 
-Route::group(['prefix'=>'admin'], function(){
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
+
+Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
 	Route::group(['prefix'=>'posts'], function(){
 		Route::get('index', ['as'=>'admin.post.list','uses'=>'PostsAdminController@index']);
 		Route::get('create-post', ['as'=>'admin.post.create','uses'=>'PostsAdminController@create']);
