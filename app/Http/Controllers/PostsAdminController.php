@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class PostsAdminController extends Controller
@@ -36,7 +37,12 @@ class PostsAdminController extends Controller
 	 * @return mixed
 	 */
 	public function store(PostRequest $request) {
-		$this->post->create($request->all());
+		$post = $this->post->create($request->all());
+		/**
+		 * Sync TAGS (pivot table)
+		 */
+		$post->tags()->sync($this->getTagsIds( $request->tags ));
+
 		return redirect()->route('admin.post.list');
 	}
 
@@ -57,8 +63,9 @@ class PostsAdminController extends Controller
 	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function update($id, PostRequest $request) {
-
 		$this->post->find($id)->update($request->all());
+		$post = $this->post->find( $id );
+		$post->tags()->sync( $this->getTagsIds( $request->tags ) );
 		return redirect()->route('admin.post.list');
 	}
 
@@ -69,5 +76,15 @@ class PostsAdminController extends Controller
 	public function destroy($id) {
 		$this->post->find($id)->delete();
 		return redirect()->route('admin.post.list');
+	}
+
+	private function getTagsIds( $tagsRequest ) {
+		$tags = array_filter( array_map( 'trim', explode( ',', $tagsRequest ) ) );
+		$tagsIds = [];
+		foreach ( $tags as $eachTagName ) {
+			$tagsIds[] = Tag::firstOrCreate(['name' => $eachTagName])->id;
+		}
+
+		return $tagsIds;
 	}
 }

@@ -19,6 +19,11 @@
         @include('admin.posts.postFields')
 
         <div class="form-group">
+            {!! Form::label('tag', 'Tags:') !!}
+            {!! Form::textArea('tags', null, ['class'=>'form-control']) !!}
+        </div>
+
+        <div class="form-group">
             {!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
             {!! Html::link(route('admin.post.list'),'Cancel',['class'=>'btn btn-warning'] ) !!}
         </div>
